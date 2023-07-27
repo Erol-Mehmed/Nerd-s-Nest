@@ -1,11 +1,20 @@
 <template>
-  <Tutorial/>
+  <div>
+    <h1>works</h1>
+    <p>{{ test }}</p>
+  </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script lang="ts" setup>
+const test: string = 'I made this for a test';
 
-export default Vue.extend({
-  name: 'IndexPage'
-})
 </script>
+
+<style scoped lang="scss">
+.test {
+  .some {
+    color: white;
+  }
+};
+
+</style>

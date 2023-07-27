@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Nerd&#39;s-Nest',
+    title: 'Nerd\'s-Nest',
     htmlAttrs: {
       lang: 'en'
     },
