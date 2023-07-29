@@ -11,11 +11,8 @@
 </template>
 
 <style scoped lang="scss">
-  .par {
-    background-color: blue;
-  }
-
-  .btn-primary {
-    background-color: aqua;
+  main {
+    flex-grow: 1;
+    background: #FFFFF0;
   }
 </style>
