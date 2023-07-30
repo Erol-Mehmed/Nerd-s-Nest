@@ -35,7 +35,7 @@
 <style scoped lang="scss">
   footer {
     background: var(--main-color);
-    padding: 50px 0;
+    padding: 30px 0;
 
     .row {
       margin-right: 0;
@@ -43,9 +43,10 @@
 
       .links {
         .links-headers {
-          font-size: 18px;
+          font-size: 15px;
           font-weight: 600;
           color: var(--vt-c-white);
+          margin-bottom: 10px;
         }
 
         ul {
@@ -54,11 +55,12 @@
 
           li {
             a {
-              font-size: 15px;
+              font-size: 12px;
               color: var(--vt-c-white-soft);
               text-decoration: none;
 
               &:hover {
+                background: none;
                 text-decoration: underline;
               }
             }
@@ -68,7 +70,7 @@
     }
 
     .copyright {
-      font-size: 14px;
+      font-size: 12px;
       color: var(--vt-c-white);
       margin: 0 0 0 50px;
     }
@@ -77,6 +79,7 @@
       color: var(--vt-c-white);
       margin-left: 50px;
       margin-right: 50px;
+      margin-top: 0;
     }
   }
 </style>

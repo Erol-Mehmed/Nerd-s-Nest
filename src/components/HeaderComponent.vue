@@ -2,31 +2,39 @@
 import { ref } from 'vue'
 import logo from '../assets/logo.svg'
 
-let hideNavbar = ref(true);
+let hideNavbar = ref(true)
 </script>
 
 <template>
   <header class="row">
     <nav class="navbar navbar-light col-md-1">
-      <button @click="hideNavbar = !hideNavbar" class="navbar-toggler bg-light" data-toggle="collapse">
+      <button
+        @mouseover="hideNavbar = false"
+        @mouseleave="hideNavbar = true"
+        class="navbar-toggler"
+        :class="{ 'nav-open': !hideNavbar }"
+      >
         <span class="navbar-toggler-icon" />
       </button>
-      <div class="navbar-collapse" :class="{ collapse: hideNavbar }" id="n_bar">
-        <ul class="navbar-nav">
-          <li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Careers</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Links</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Membership</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Join Us</a></li>
-        </ul>
-      </div>
     </nav>
 
     <div class="logo-name col-md-3">
       <img :src="logo" alt="" />
       <h1>Nerd's Nest</h1>
+    </div>
+
+    <div
+      @mouseover="hideNavbar = false"
+      @mouseleave="hideNavbar = true"
+      class="navbar-collapse"
+      :class="{ collapse: hideNavbar }"
+      id="n_bar"
+    >
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#">Games</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Books</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Movies</a></li>
+      </ul>
     </div>
   </header>
 </template>
@@ -44,15 +52,18 @@ let hideNavbar = ref(true);
     width: 50px;
 
     .navbar-toggler {
+      background: var(--vt-c-white);
       padding: 0 7px;
 
-      .navbar-toggler-icon {
-        width: 25px;
+      &.nav-open {
+        background: #a2d8e5;
+        border-bottom-left-radius: unset;
+        border-bottom-right-radius: unset;
       }
-    }
 
-    .navbar-collapse {
-      background: red;
+      .navbar-toggler-icon {
+        width: 18px;
+      }
     }
   }
 
@@ -61,13 +72,36 @@ let hideNavbar = ref(true);
     align-items: center;
 
     h1 {
-      font-size: 30px;
+      font-size: 22px;
       margin: 0;
     }
 
     img {
       width: 20px;
       margin-right: 10px;
+    }
+  }
+
+  .navbar-collapse {
+    width: 150px;
+    position: absolute;
+    top: 54px;
+    background: #a2d8e5;
+    border-radius: 0 5px 5px 5px;
+    padding: 40px 20px 20px;
+
+    .navbar-nav .nav-item {
+      &:hover {
+        background: #FFFFF0;
+        border-radius: 5px;
+      }
+
+      .nav-link {
+        font-family: var(--main-font-family);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--main-color);
+      }
     }
   }
 }

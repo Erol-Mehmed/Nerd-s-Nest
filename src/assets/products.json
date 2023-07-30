@@ -1,0 +1,31 @@
+ {
+  "games": {
+    "ac-valhalla": {
+      "name": "Assassins Creed: Valhalla (PS4)",
+      "image": "../assets/images/ac-valhalla.jpg",
+      "description": "Assassin's Creed Valhalla is an action-adventure video game developed by Ubisoft Montreal and published by Ubisoft.",
+      "price": "30$",
+      "rating": "4"
+    },
+    "elden-ring": {
+      "name": "Elden Ring (PS4)",
+      "image": "../assets/images/elden-ring.jpg",
+      "description": "Elden Ring is an action role-playing game developed by FromSoftware and published by Bandai Namco Entertainment.",
+      "price": "50$",
+      "rating": "5"
+    },
+    "soma": {
+      "name": "Soma (PS4)",
+      "image": "../assets/images/soma.jpg",
+      "description": "Soma is a survival horror video game developed by Frictional Games and published by 505 Games. It was released for Microsoft Windows, PlayStation 4, and Xbox One in September 2015.",
+      "price": "15$",
+      "rating": "3"
+    }
+  },
+  "books": {
+
+  },
+  "movies": {
+
+  }
+}
