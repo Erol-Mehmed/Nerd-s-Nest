@@ -1,6 +1,9 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
   --main-color: #282828;
+  --light-sky-blue: #a2d8e5;
+  --sky-blue: #8fc1ce;
+  --dark-sky-blue: #7ca9b4;
   --main-font-family: Roboto, Helvetica, sans-serif;
 
   --vt-c-white: #ffffff;

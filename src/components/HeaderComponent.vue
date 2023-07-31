@@ -56,7 +56,7 @@ let hideNavbar = ref(true)
       padding: 0 7px;
 
       &.nav-open {
-        background: #a2d8e5;
+        background: var(--light-sky-blue);
         border-bottom-left-radius: unset;
         border-bottom-right-radius: unset;
       }
@@ -86,7 +86,7 @@ let hideNavbar = ref(true)
     width: 150px;
     position: absolute;
     top: 54px;
-    background: #a2d8e5;
+    background: var(--light-sky-blue);
     border-radius: 0 5px 5px 5px;
     padding: 40px 20px 20px;
 
