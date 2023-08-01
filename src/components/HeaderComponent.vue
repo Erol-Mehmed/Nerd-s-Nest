@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import logo from '../assets/logo.svg'
+import { useCategoryStore } from '@/stores/categories'
 
-let hideNavbar = ref(true)
+const hideNavbar = ref(true)
+const { switchCategory } = useCategoryStore()
 </script>
 
 <template>
@@ -30,10 +32,14 @@ let hideNavbar = ref(true)
       :class="{ collapse: hideNavbar }"
       id="n_bar"
     >
+      <p>Categories</p>
+      <hr />
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="#">Games</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Books</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Movies</a></li>
+        <li class="nav-item"><button class="nav-link" @click="switchCategory(0)">Games</button></li>
+        <li class="nav-item"><button class="nav-link" @click="switchCategory(1)">Books</button></li>
+        <li class="nav-item">
+          <button class="nav-link" @click="switchCategory(2)">Movies</button>
+        </li>
       </ul>
     </div>
   </header>
@@ -88,19 +94,37 @@ let hideNavbar = ref(true)
     top: 54px;
     background: var(--light-sky-blue);
     border-radius: 0 5px 5px 5px;
-    padding: 40px 20px 20px;
+    padding: 20px;
+
+    p {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--main-color);
+      margin: 0;
+    }
+
+    hr {
+      height: 3px;
+      margin: 5px 0 10px;
+      color: black;
+    }
 
     .navbar-nav .nav-item {
-      &:hover {
-        background: #FFFFF0;
-        border-radius: 5px;
-      }
-
       .nav-link {
         font-family: var(--main-font-family);
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 600;
         color: var(--main-color);
+        padding: 5px;
+
+        &:hover {
+          background: #fffff0;
+          border-radius: 5px;
+        }
+
+        &:active {
+          background: #b3b3a4;
+        }
       }
     }
   }

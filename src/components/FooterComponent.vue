@@ -1,7 +1,4 @@
-<script setup lang="ts">
-
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <footer>
@@ -18,7 +15,7 @@
       </div>
       <div class="links col-md-6">
         <p class="links-headers">Follow us on social media:</p>
-        
+
         <ul>
           <li><a href="">Facebook</a></li>
           <li><a href="">Twitter</a></li>
@@ -27,59 +24,59 @@
         </ul>
       </div>
     </div>
-      <hr>
+    <hr />
     <p class="copyright">Copyright &copy; 2023 Nerd's Nest. All rights reserved.</p>
   </footer>
 </template>
 
 <style scoped lang="scss">
-  footer {
-    background: var(--main-color);
-    padding: 30px 0;
+footer {
+  background: var(--main-color);
+  padding: 30px 0;
 
-    .row {
-      margin-right: 0;
-      padding: 0 150px;
+  .row {
+    margin-right: 0;
+    padding: 0 150px;
 
-      .links {
-        .links-headers {
-          font-size: 15px;
-          font-weight: 600;
-          color: var(--vt-c-white);
-          margin-bottom: 10px;
-        }
+    .links {
+      .links-headers {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--vt-c-white);
+        margin-bottom: 10px;
+      }
 
-        ul {
-          padding: 0;
-          list-style-type: none;
+      ul {
+        padding: 0;
+        list-style-type: none;
 
-          li {
-            a {
-              font-size: 12px;
-              color: var(--vt-c-white-soft);
-              text-decoration: none;
+        li {
+          a {
+            font-size: 12px;
+            color: var(--vt-c-white-soft);
+            text-decoration: none;
 
-              &:hover {
-                background: none;
-                text-decoration: underline;
-              }
+            &:hover {
+              background: none;
+              text-decoration: underline;
             }
           }
         }
       }
     }
-
-    .copyright {
-      font-size: 12px;
-      color: var(--vt-c-white);
-      margin: 0 0 0 50px;
-    }
-
-    hr {
-      color: var(--vt-c-white);
-      margin-left: 50px;
-      margin-right: 50px;
-      margin-top: 0;
-    }
   }
+
+  .copyright {
+    font-size: 12px;
+    color: var(--vt-c-white);
+    margin: 0 0 0 50px;
+  }
+
+  hr {
+    color: var(--vt-c-white);
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 0;
+  }
+}
 </style>
