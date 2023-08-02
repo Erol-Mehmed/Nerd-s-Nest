@@ -8,7 +8,7 @@ const { switchCategory } = useCategoryStore()
 </script>
 
 <template>
-  <header class="row">
+  <header class="row sticky-top">
     <nav class="navbar navbar-light col-md-1">
       <button
         @mouseover="hideNavbar = false"
@@ -36,9 +36,8 @@ const { switchCategory } = useCategoryStore()
       <hr />
       <ul class="navbar-nav">
         <li class="nav-item"><button class="nav-link" @click="switchCategory(0)">Games</button></li>
-        <li class="nav-item"><button class="nav-link" @click="switchCategory(1)">Books</button></li>
         <li class="nav-item">
-          <button class="nav-link" @click="switchCategory(2)">Movies</button>
+          <button class="nav-link" @click="switchCategory(1)">Movies</button>
         </li>
       </ul>
     </div>

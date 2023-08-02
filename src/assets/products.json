@@ -4,14 +4,16 @@
       {
         "name": "Assassins Creed: Valhalla (PS4)",
         "image": "../assets/images/games/ac-valhalla.jpg",
+        "platform": "ps4",
         "description": "Assassin's Creed Valhalla is an action-adventure video game developed by Ubisoft Montreal and published by Ubisoft.",
         "price": "60$",
         "discountedPrice": "30$",
-        "rating": "4"
+        "rating": "4.5"
       },
       {
         "name": "Elden Ring (PS4)",
         "image": "../assets/images/games/elden-ring.jpg",
+        "platform": "ps4",
         "description": "Elden Ring is an action role-playing game developed by FromSoftware and published by Bandai Namco Entertainment.",
         "price": "50$",
         "rating": "5"
@@ -19,9 +21,10 @@
       {
         "name": "Soma (PS4)",
         "image": "../assets/images/games/soma.jpg",
+        "platform": "ps4",
         "description": "Soma is a survival horror video game developed by Frictional Games and published by 505 Games. It was released for Microsoft Windows, PlayStation 4, and Xbox One in September 2015.",
         "price": "45$",
-        "discountedPrice": "15$", 
+        "discountedPrice": "15$",
         "rating": "3"
       }
     ],
@@ -29,6 +32,7 @@
       {
         "name": "Horizon Forbidden West (PS5)",
         "image": "../assets/images/games/horizon-forbidden-west.jpeg",
+        "platform": "ps5",
         "description": "Horizon Forbidden West is an action role-playing video game developed by Guerrilla Games and published by Sony Interactive Entertainment.",
         "price": "40$",
         "rating": "3"
@@ -36,6 +40,7 @@
       {
         "name": "Ghost of Tsushima (PS4)",
         "image": "../assets/images/games/ghost-of-tsushima.jpeg",
+        "platform": "ps4",
         "description": "Ghost of Tsushima is an action-adventure game developed by Sucker Punch Productions and published by Sony Interactive Entertainment.",
         "price": "30$",
         "rating": "4"
@@ -43,6 +48,7 @@
       {
         "name": "Marvel's Spider-Man (PS4)",
         "image": "../assets/images/games/marvels-spider-man.webp",
+        "platform": "ps4",
         "description": "Marvel's Spider-Man is an action-adventure game developed by Insomniac Games and published by Sony Interactive Entertainment.",
         "price": "20$",
         "rating": "4"
@@ -52,6 +58,7 @@
       {
         "name": "God of War (PS4)",
         "image": "../assets/images/games/god-of-war.jpg",
+        "platform": "ps4",
         "description": "God of War is an action-adventure game developed by Santa Monica Studio and published by Sony Interactive Entertainment.",
         "price": "25$",
         "rating": "5"
@@ -59,6 +66,7 @@
       {
         "name": "The Last of Us Part II (PS4)",
         "image": "../assets/images/games/the-last-of-us-part-ii.jpg",
+        "platform": "ps4",
         "description": "The Last of Us Part II is an action-adventure survival horror game developed by Naughty Dog and published by Sony Interactive Entertainment.",
         "price": "60$",
         "rating": "5"
@@ -66,6 +74,7 @@
       {
         "name": "Bloodborne (PS4)",
         "image": "../assets/images/games/bloodborne.jpg",
+        "platform": "ps4",
         "description": "A challenging action RPG set in a Lovecraftian world.",
         "price": "50$",
         "rating": "5"
@@ -75,20 +84,23 @@
       {
         "name": "Days Gone (PS4)",
         "image": "../assets/images/games/days-gone.jpg",
+        "platform": "ps4",
         "description": "A post-apocalyptic open-world action-adventure game.",
         "price": "15$",
-        "rating": "4"
+        "rating": "3"
       },
       {
         "name": "Control (PS4)",
         "image": "../assets/images/games/control.jpg",
+        "platform": "ps4",
         "description": "A third-person action-adventure game set in a mysterious government agency.",
         "price": "20$",
-        "rating": "5"
+        "rating": "3.5"
       },
       {
         "name": "Disco Elysium (PS4)",
         "image": "../assets/images/games/disco-elysium.jpg",
+        "platform": "ps4",
         "description": "A role-playing game set in a dystopian city.",
         "price": "25$",
         "rating": "5"
@@ -98,72 +110,91 @@
       {
         "name": "The Outer Worlds (PS4)",
         "image": "../assets/images/games/the-outer-worlds.jpg",
+        "platform": "ps4",
         "description": "A role-playing game set in a space colony.",
         "price": "20$",
-        "rating": "4"
+        "rating": "2"
       },
       {
         "name": "Death Stranding (PS4)",
         "image": "../assets/images/games/death-stranding.jpg",
+        "platform": "ps4",
         "description": "A post-apocalyptic action-adventure game.",
         "price": "25$",
-        "rating": "5"
+        "rating": "2.5"
       },
       {
         "name": "Returnal (PS5)",
         "image": "../assets/images/games/returnal.jpg",
+        "platform": "ps5",
         "description": "A roguelike action-adventure game.",
         "price": "30$",
-        "rating": "5"
+        "rating": "3"
       }
     ],
     [
       {
         "name": "Ghostrunner (PS4)",
         "image": "../assets/images/games/ghostrunner.jpg",
+        "platform": "ps4",
         "description": "A cyberpunk action-adventure game.",
         "price": "20$",
-        "rating": "4"
+        "rating": "2.5"
       },
       {
         "name": "Kena: Bridge of Spirits (PS4)",
         "image": "../assets/images/games/kena-bridge-of-spirits.jpg",
+        "platform": "ps4",
         "description": "A 3D action-adventure game.",
         "price": "25$",
-        "rating": "5"
+        "rating": "3"
       },
       {
         "name": "Ratchet & Clank: Rift Apart (PS5)",
         "image": "../assets/images/games/ratchet-and-clank.jpg",
+        "platform": "ps5",
         "description": "A platform game set in the Ratchet & Clank series.",
         "price": "30$",
-        "rating": "5"
+        "rating": "2.5"
       }
     ],
     [
       {
         "name": "Spider-Man: Miles Morales (PS5)",
         "image": "../assets/images/games/spider-man-miles-morales.jpg",
+        "platform": "ps5",
         "description": "A spin-off game of Marvel's Spider-Man.",
         "price": "50$",
-        "rating": "5"
+        "rating": "4"
       },
       {
         "name": "Concrete Genie (PS4)",
         "image": "../assets/images/games/concrete-genie.jpg",
+        "platform": "ps4",
         "description": "A 3D action-adventure game where you paint the city to bring to life a cast of colorful genies.",
         "price": "10$",
-        "rating": "4"
+        "rating": "0.5"
       },
       {
         "name": "Star Wars Jedi: Survivor (PC)",
         "image": "../assets/images/games/star-wars-jedi-survivor.jpg",
+        "platform": "ps4",
         "description": "The story of Cal Kestis continues in Star Wars Jedi: Survivor™, a third-person, galaxy-spanning, action-adventure game from Respawn Entertainment, developed in collaboration with Lucasfilm Games.",
         "price": "80$",
-        "rating": "3"
+        "rating": "4"
       }
     ]
   ],
-  "books": [],
-  "movies": []
+  "movies": [
+    [
+    {
+      "name": "Star Wars Jedi: Survivor (PC)",
+      "image": "../assets/images/games/star-wars-jedi-survivor.jpg",
+      "platform": "ps4",
+      "description": "The story of Cal Kestis continues in Star Wars Jedi: Survivor™, a third-person, galaxy-spanning, action-adventure game from Respawn Entertainment, developed in collaboration with Lucasfilm Games.",
+      "price": "80$",
+      "rating": "4"
+    }
+  ]
+  ]
 }

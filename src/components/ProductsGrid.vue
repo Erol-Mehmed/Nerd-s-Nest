@@ -1,25 +1,85 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import products from '../assets/products.json'
 import { useCategoryStore } from '@/stores/categories'
-import { ref } from 'vue';
 
 const showMore = ref(false)
+let productsArr: any[] = []
 const { categoryIndex } = storeToRefs(useCategoryStore())
-const productsArr = Object.entries(products)
+const { filtrationData } = storeToRefs(useCategoryStore())
+
+console.log('grid:', filtrationData.value, filtrationData.value.price)
+
+productsArr = Object.entries(products)
+
+if (Object.keys(filtrationData.value).length > 0) {
+  console.log(productsArr[categoryIndex.value][1]);
+  productsArr = productsArr[categoryIndex.value][1].map((arr: any) => arr.map((obj: any) => obj.price ===`${filtrationData.value.price}$` ? obj : {}));
+  productsArr = productsArr.filter(arr => arr.filter(obj => Object.keys(obj).length === 0))
+  console.log(productsArr);
+  
+}
+
 const currentProducts = (categoryIndex: number) =>
-  showMore.value ? productsArr[categoryIndex][1] : productsArr[categoryIndex][1].filter((el, i) => i < 5)
+  showMore.value
+    ? productsArr[categoryIndex][1]
+    : productsArr[categoryIndex][1].filter((_el: any, i: number) => i < 5)
 const currentProductImage = (imgPath: string) => new URL(imgPath, import.meta.url).href
+const cartAlert = () => {
+  alert('Product added to cart')
+}
+
+let ratingStars: string[][][] = []
+
+const ratingStarsCreation = () => {
+  const currentCategoryArr = currentProducts(categoryIndex.value)
+  const decimalCheck = /^[0-9]+\.5$/
+
+  for (let i = 0; i < currentCategoryArr.length; i += 1) {
+    const currentNestedArr: string[][] = []
+
+    for (let y = 0; y < currentCategoryArr[i].length; y += 1) {
+      let currentRating = currentCategoryArr[i][y].rating
+      const iconTypeArr = []
+
+      if (decimalCheck.test(currentRating)) {
+        for (let l = 0; l < Number(currentRating.split('.')[0]); l += 1) {
+          iconTypeArr.push('fas fa-star')
+        }
+
+        iconTypeArr.push('fa-star-half-stroke')
+      } else {
+        for (let l = 0; l < Number(currentRating); l += 1) {
+          iconTypeArr.push('fas fa-star')
+        }
+      }
+
+      if (iconTypeArr.length < 5) {
+        while (iconTypeArr.length < 5) {
+          iconTypeArr.push('far fa-star')
+        }
+      }
+
+      currentNestedArr.push(iconTypeArr)
+    }
+
+    ratingStars.push(currentNestedArr)
+  }
+}
+ratingStarsCreation()
 
 const loadMore = () => {
   showMore.value = true
+  ratingStars = []
+  ratingStarsCreation()
 }
 </script>
 
 <template>
-  <div class="container col-md-10">
-    <div v-for="rowArr in currentProducts(categoryIndex)" :key="rowArr[0].name" class="row">
-      <div v-for="product in rowArr" :key="product.name" class="col-md-3 product">
+  <div class="container-fluid col-md-10">
+    <div v-for="(rowArr, i) in currentProducts(categoryIndex)" :key="rowArr[0].name" class="row">
+      <div v-for="(product, y) in rowArr" :key="product.name" class="col-md-3 product">
         <div class="img-name">
           <img :src="currentProductImage(product.image)" alt="" />
           <p>{{ product.name }}</p>
@@ -30,6 +90,22 @@ const loadMore = () => {
             Price: {{ product.price }}
           </p>
           <p v-if="product.discountedPrice">Discounted Price {{ product.discountedPrice }}</p>
+        </div>
+        <div class="ratings">
+          <div class="rating-icons">
+            <font-awesome-icon :icon="`${ratingStars[i][y][0]}`" color="orange" />
+            <font-awesome-icon :icon="`${ratingStars[i][y][1]}`" color="orange" />
+            <font-awesome-icon :icon="`${ratingStars[i][y][2]}`" color="orange" />
+            <font-awesome-icon :icon="`${ratingStars[i][y][3]}`" color="orange" />
+            <font-awesome-icon :icon="`${ratingStars[i][y][4]}`" color="orange" />
+          </div>
+          <p><span>{{ product.rating }}</span> of <span>5</span></p>
+        </div>
+
+        <div class="shopping-cart-btn">
+          <button @click="cartAlert()" class="btn shopping-cart">
+            <font-awesome-icon icon="fas fa-cart-shopping" />
+          </button>
         </div>
       </div>
     </div>
@@ -46,7 +122,7 @@ const loadMore = () => {
 </template>
 
 <style scoped lang="scss">
-.container {
+.container-fluid {
   .row {
     justify-content: center;
     gap: 30px;
@@ -91,6 +167,32 @@ const loadMore = () => {
 
         .discount-available {
           text-decoration: line-through;
+        }
+      }
+
+      .ratings {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin: 15px 0 0;
+
+        p {
+          margin: 0;
+          font-size: 13px;
+
+          span {
+            font-weight: 600;
+          }
+        }
+      }
+
+      .shopping-cart-btn {
+        display: flex;
+        justify-content: flex-end;
+        .shopping-cart {
+          &:hover {
+            background: var(--sky-blue);
+          }
         }
       }
     }
