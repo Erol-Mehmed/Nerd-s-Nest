@@ -196,12 +196,13 @@
         "rating": "4"
       },
       {
-        "name": "Star Wars Jedi: Survivor (PC)",
-        "image": "../assets/images/games/star-wars-jedi-survivor.jpg",
+        "name": "Assassins Creed: Valhalla (PS4)",
+        "image": "../assets/images/games/ac-valhalla.jpg",
         "platform": "ps4",
-        "description": "The story of Cal Kestis continues in Star Wars Jedi: Survivor™, a third-person, galaxy-spanning, action-adventure game from Respawn Entertainment, developed in collaboration with Lucasfilm Games.",
-        "price": "80$",
-        "rating": "4"
+        "description": "Assassin's Creed Valhalla is an action-adventure video game developed by Ubisoft Montreal and published by Ubisoft.",
+        "price": "60$",
+        "discountedPrice": "30$",
+        "rating": "4.5"
       }
     ]
   ]

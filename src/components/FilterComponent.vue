@@ -5,8 +5,8 @@ import useDetectOutsideClick from '../composables/clickOutside'
 const emit = defineEmits(['filtration-data'])
 
 const openClose = ref(false)
-const price = ref(null)
-const rating = ref(null)
+const price = ref('')
+const rating = ref('')
 let dropdownSelection = ref('Select an option')
 const dropdownRef = ref(null)
 const formValidationError = ref(false)
@@ -24,7 +24,7 @@ watch(dropdownSelection, (_newDropdownSelection) => {
 })
 
 const formSubmit = (e: any) => {
-  if (price.value === null && rating.value === null && dropdownSelection.value === 'Select an option') {
+  if (price.value === '' && rating.value === '' && dropdownSelection.value === 'Select an option') {
     formValidationError.value = true
   } else {
     formValidationError.value = false
@@ -39,7 +39,7 @@ const formSubmit = (e: any) => {
     }
 
     emit('filtration-data', {
-      price: price.value === null ? price.value : `${price.value}$`,
+      price: price.value === '' ? price.value : `${price.value}$`,
       rating: rating.value,
       dropdownSelection: dropdownSelectionToEmit()
     })
@@ -50,8 +50,8 @@ const formSubmit = (e: any) => {
 const clearFilter = (e: any) => {
   formValidationError.value = false
 
-  price.value = null
-  rating.value = null
+  price.value = ''
+  rating.value = ''
   dropdownSelection.value = 'Select an option'  
   emit('filtration-data', {})
 
@@ -98,7 +98,7 @@ const openCloseDropdown = (platformGenre?: string) => {
         <ul class="dropdown-menu" :class="{ 'dropdown-open': openClose }">
           <li>
             <span @click="openCloseDropdown('Select an option')" class="dropdown-item"
-              >Select an option</span
+              >Unselect</span
             >
           </li>
           <li>

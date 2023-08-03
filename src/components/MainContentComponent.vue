@@ -7,7 +7,7 @@ const updater = ref(0)
 const filterData = ref({})
 const filtrationData = (data: object) => {
   filterData.value = data
-  updater.value += 1
+  updater.value++
 }
 </script>
 

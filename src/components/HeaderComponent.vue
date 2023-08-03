@@ -4,7 +4,13 @@ import logo from '../assets/logo.svg'
 import { useCategoryStore } from '@/stores/categories'
 
 const hideNavbar = ref(true)
+const emit = defineEmits(['category-change'])
 const { switchCategory } = useCategoryStore()
+
+const switchCategoryEmit = (categoryIndex: number) => {
+  switchCategory(categoryIndex)
+  emit('category-change')
+}
 </script>
 
 <template>
@@ -35,9 +41,11 @@ const { switchCategory } = useCategoryStore()
       <p>Categories</p>
       <hr />
       <ul class="navbar-nav">
-        <li class="nav-item"><button class="nav-link" @click="switchCategory(0)">Games</button></li>
         <li class="nav-item">
-          <button class="nav-link" @click="switchCategory(1)">Books</button>
+          <button class="nav-link" @click="() => switchCategoryEmit(0)">Games</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" @click="() => switchCategoryEmit(1)">Books</button>
         </li>
       </ul>
     </div>
