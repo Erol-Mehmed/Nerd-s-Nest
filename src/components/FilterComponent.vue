@@ -1,34 +1,59 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import useDetectOutsideClick from '../composables/clickOutside'
-import { useCategoryStore } from '@/stores/categories'
 
 const emit = defineEmits(['filtration-data'])
 
-const { addFiltrationData } = useCategoryStore()
 const openClose = ref(false)
 const price = ref(null)
 const rating = ref(null)
-let selectedPlatform = 'Select an option'
+let dropdownSelection = ref('Select an option')
 const dropdownRef = ref(null)
-const formSubmit = (e: any) => {
-  addFiltrationData({
-    price: price.value,
-    rating: rating.value,
-    selectedPlatform
-  })
+const formValidationError = ref(false)
 
-  emit('filtration-data', {
-    price: price.value,
-    rating: rating.value,
-    selectedPlatform
-  })
+watch(price, (_newPrice) => {
+  formValidationError.value = false
+})
+
+watch(rating, (_newrating) => {
+  formValidationError.value = false
+})
+
+watch(dropdownSelection, (_newDropdownSelection) => {
+  formValidationError.value = false
+})
+
+const formSubmit = (e: any) => {
+  if (price.value === null && rating.value === null && dropdownSelection.value === 'Select an option') {
+    formValidationError.value = true
+  } else {
+    formValidationError.value = false
+    const dropdownSelectionToEmit = () => {
+      if (dropdownSelection.value === 'Playstation 4') {
+        return 'ps4'
+      } else if (dropdownSelection.value === 'Playstation 5') {
+        return 'ps5'
+      } else {
+        return ''
+      }
+    }
+
+    emit('filtration-data', {
+      price: price.value === null ? price.value : `${price.value}$`,
+      rating: rating.value,
+      dropdownSelection: dropdownSelectionToEmit()
+    })
+  }
 
   e.preventDefault()
 }
 const clearFilter = (e: any) => {
-  addFiltrationData({
-  })
+  formValidationError.value = false
+
+  price.value = null
+  rating.value = null
+  dropdownSelection.value = 'Select an option'  
+  emit('filtration-data', {})
 
   e.preventDefault()
 }
@@ -37,10 +62,11 @@ useDetectOutsideClick(dropdownRef, () => {
   openClose.value = false
 })
 
-const openCloseDropdown = (platform?: string) => {
+const openCloseDropdown = (platformGenre?: string) => {
   openClose.value = !openClose.value
-  if (platform) {
-    selectedPlatform = platform
+  
+  if (platformGenre) {    
+    dropdownSelection.value = platformGenre
   }
 }
 </script>
@@ -67,7 +93,7 @@ const openCloseDropdown = (platform?: string) => {
           type="button"
           data-bs-toggle="dropdown"
         >
-          {{ selectedPlatform }}
+          {{ dropdownSelection }}
         </button>
         <ul class="dropdown-menu" :class="{ 'dropdown-open': openClose }">
           <li>
@@ -86,6 +112,10 @@ const openCloseDropdown = (platform?: string) => {
             >
           </li>
         </ul>
+      </div>
+
+      <div v-if="formValidationError" class="error">
+        <p>No criteria inputted or selected</p>
       </div>
 
       <div class="filter-btn">
@@ -174,7 +204,7 @@ const openCloseDropdown = (platform?: string) => {
 
     .filter-btn {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       margin-top: 50px;
 
       .btn-primary {
@@ -191,6 +221,15 @@ const openCloseDropdown = (platform?: string) => {
         &:active {
           background: var(--dark-sky-blue);
         }
+      }
+    }
+
+    .error {
+      p {
+        font-weight: 600;
+        color: red;
+        font-size: 14px;
+        margin: 0;
       }
     }
   }

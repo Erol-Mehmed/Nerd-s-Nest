@@ -5,30 +5,72 @@ import products from '../assets/products.json'
 import { useCategoryStore } from '@/stores/categories'
 
 const showMore = ref(false)
-let productsArr: any[] = []
+const props = defineProps(['filterData'])
+
+let filterDataArr = Object.entries(props.filterData)
+filterDataArr = filterDataArr.filter(arr => arr[1] !== null && arr[1] !== '')
+
+let productsArr: any[] = Object.entries(products)
 const { categoryIndex } = storeToRefs(useCategoryStore())
-const { filtrationData } = storeToRefs(useCategoryStore())
-
-console.log('grid:', filtrationData.value, filtrationData.value.price)
-
-productsArr = Object.entries(products)
-
-if (Object.keys(filtrationData.value).length > 0) {
-  console.log(productsArr[categoryIndex.value][1]);
-  productsArr = productsArr[categoryIndex.value][1].map((arr: any) => arr.map((obj: any) => obj.price ===`${filtrationData.value.price}$` ? obj : {}));
-  productsArr = productsArr.filter(arr => arr.filter(obj => Object.keys(obj).length === 0))
-  console.log(productsArr);
-  
-}
 
 const currentProducts = (categoryIndex: number) =>
   showMore.value
     ? productsArr[categoryIndex][1]
     : productsArr[categoryIndex][1].filter((_el: any, i: number) => i < 5)
+
 const currentProductImage = (imgPath: string) => new URL(imgPath, import.meta.url).href
 const cartAlert = () => {
   alert('Product added to cart')
 }
+
+console.log('grid:', Object.values(props.filterData))
+console.log('filter data:', filterDataArr)
+
+// if (filterDataArr.length > 0) {
+//   const currentCategoryArr = currentProducts(categoryIndex.value)
+//   filterDataArr[0] = `${filterDataArr[0]}$`
+//   let productsArrSecond: any = [
+//     ['', []],
+//     ['', []]
+//   ]
+//   let rowArr = []
+//   let noResult = false
+
+//   for (let i = 0; i < currentCategoryArr.length; i += 1) {
+//     for (let y = 0; y < currentCategoryArr[i].length; y += 1) {
+//       let checksPassed = true
+
+//       for (let l = 0; l < filterDataArr.length; l += 1) {
+//         const platformGenre = categoryIndex.value === 0 ? 'platform' : 'genre'
+
+//         console.log(currentCategoryArr[i][y][currentCharacteristic], filterDataArr[l]);
+//         console.log(currentCharacteristic);
+        
+
+//         if (currentCategoryArr[i][y][currentCharacteristic] !== filterDataArr[l]) {
+//           checksPassed = false
+//         }
+
+//         if (checksPassed && l === filterDataArr.length - 1) {
+//           rowArr.push(currentCategoryArr[i][y])
+//         }
+//       }
+//     }
+
+//     if (rowArr.length === 3 || i === currentCategoryArr.length - 1) {
+//       productsArrSecond[categoryIndex.value][1].push(rowArr)
+//       if (rowArr.length > 0) {
+//         noResult = true
+//       }
+
+//       rowArr = []
+//     }
+//   }
+
+//   if (noResult) {
+//     productsArr = productsArrSecond
+//   }
+// }
 
 let ratingStars: string[][][] = []
 
@@ -99,7 +141,9 @@ const loadMore = () => {
             <font-awesome-icon :icon="`${ratingStars[i][y][3]}`" color="orange" />
             <font-awesome-icon :icon="`${ratingStars[i][y][4]}`" color="orange" />
           </div>
-          <p><span>{{ product.rating }}</span> of <span>5</span></p>
+          <p>
+            <span>{{ product.rating }}</span> of <span>5</span>
+          </p>
         </div>
 
         <div class="shopping-cart-btn">

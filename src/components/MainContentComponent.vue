@@ -3,9 +3,11 @@ import { ref } from 'vue'
 import FilterComponent from './FilterComponent.vue'
 import ProductsGrid from './ProductsGrid.vue'
 
-const counter = ref(0)
-const filtrationData = () => {
-  counter.value++
+const updater = ref(0)
+const filterData = ref({})
+const filtrationData = (data: object) => {
+  filterData.value = data
+  updater.value += 1
 }
 </script>
 
@@ -13,8 +15,8 @@ const filtrationData = () => {
   <main>
     <div class="container-fluid">
       <div class="row">
-        <FilterComponent @filtration-data="filtrationData()" />
-        <ProductsGrid :key="counter" />
+        <FilterComponent @filtration-data="filtrationData" />
+        <ProductsGrid :filter-data="filterData" :key="updater" />
       </div>
     </div>
   </main>

@@ -176,6 +176,26 @@
         "rating": "0.5"
       },
       {
+        "name": "Star Wars Jedi: Survivor (PS5)",
+        "image": "../assets/images/games/star-wars-jedi-survivor.jpg",
+        "platform": "ps5",
+        "description": "The story of Cal Kestis continues in Star Wars Jedi: Survivor™, a third-person, galaxy-spanning, action-adventure game from Respawn Entertainment, developed in collaboration with Lucasfilm Games.",
+        "price": "80$",
+        "rating": "4.5"
+      }
+    ]
+  ],
+  "books": [
+    [
+      {
+        "name": "Star Wars Jedi: Survivor (PC)",
+        "image": "../assets/images/games/star-wars-jedi-survivor.jpg",
+        "platform": "ps4",
+        "description": "The story of Cal Kestis continues in Star Wars Jedi: Survivor™, a third-person, galaxy-spanning, action-adventure game from Respawn Entertainment, developed in collaboration with Lucasfilm Games.",
+        "price": "80$",
+        "rating": "4"
+      },
+      {
         "name": "Star Wars Jedi: Survivor (PC)",
         "image": "../assets/images/games/star-wars-jedi-survivor.jpg",
         "platform": "ps4",
@@ -184,17 +204,5 @@
         "rating": "4"
       }
     ]
-  ],
-  "movies": [
-    [
-    {
-      "name": "Star Wars Jedi: Survivor (PC)",
-      "image": "../assets/images/games/star-wars-jedi-survivor.jpg",
-      "platform": "ps4",
-      "description": "The story of Cal Kestis continues in Star Wars Jedi: Survivor™, a third-person, galaxy-spanning, action-adventure game from Respawn Entertainment, developed in collaboration with Lucasfilm Games.",
-      "price": "80$",
-      "rating": "4"
-    }
-  ]
   ]
 }

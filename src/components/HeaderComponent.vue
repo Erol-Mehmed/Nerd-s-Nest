@@ -37,7 +37,7 @@ const { switchCategory } = useCategoryStore()
       <ul class="navbar-nav">
         <li class="nav-item"><button class="nav-link" @click="switchCategory(0)">Games</button></li>
         <li class="nav-item">
-          <button class="nav-link" @click="switchCategory(1)">Movies</button>
+          <button class="nav-link" @click="switchCategory(1)">Books</button>
         </li>
       </ul>
     </div>
