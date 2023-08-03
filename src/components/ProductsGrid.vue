@@ -237,7 +237,7 @@ const loadMore = () => {
         </button>
         <ul class="dropdown-menu" :class="{ 'dropdown-open': openClose }">
           <li>
-            <span @click="openCloseDropdown('Sort')" class="dropdown-item">Unselect</span>
+            <span @click="openCloseDropdown('Sort')" class="dropdown-item">--Select--</span>
           </li>
           <li>
             <span @click="openCloseDropdown('Alphabetical a-z')" class="dropdown-item"

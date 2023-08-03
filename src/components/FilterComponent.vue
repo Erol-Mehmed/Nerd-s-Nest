@@ -98,7 +98,7 @@ const openCloseDropdown = (platformGenre?: string) => {
         <ul class="dropdown-menu" :class="{ 'dropdown-open': openClose }">
           <li>
             <span @click="openCloseDropdown('Select an option')" class="dropdown-item"
-              >Unselect</span
+              >--Select--</span
             >
           </li>
           <li>
