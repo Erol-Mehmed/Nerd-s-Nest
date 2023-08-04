@@ -1,7 +1,7 @@
 <template>
   <footer>
     <div class="row">
-      <div class="links col-md-6">
+      <div class="links col-md-6 col-sm-6">
         <p class="links-headers">For Nerd's Nest</p>
 
         <ul>
@@ -11,7 +11,7 @@
           <li><a href="">Terms of Service</a></li>
         </ul>
       </div>
-      <div class="links col-md-6">
+      <div class="links col-md-6 col-sm-6">
         <p class="links-headers">Follow us on social media:</p>
 
         <ul>
@@ -75,6 +75,14 @@ footer {
     margin-left: 50px;
     margin-right: 50px;
     margin-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  footer {
+    .row {
+      padding: 0 20px;
+    }
   }
 }
 </style>

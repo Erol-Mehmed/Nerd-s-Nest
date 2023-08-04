@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import useDetectOutsideClick from '../composables/clickOutside'
+import { useCategoryStore } from '@/stores/categories'
+import { storeToRefs } from 'pinia'
 
 const emit = defineEmits(['filtration-data'])
+const { categoryIndex } = storeToRefs(useCategoryStore())
 
 const openClose = ref(false)
 const price = ref('')
@@ -29,12 +32,26 @@ const formSubmit = (e: any) => {
   } else {
     formValidationError.value = false
     const dropdownSelectionToEmit = () => {
-      if (dropdownSelection.value === 'Playstation 4') {
-        return 'ps4'
-      } else if (dropdownSelection.value === 'Playstation 5') {
-        return 'ps5'
+      if (categoryIndex.value === 0) {
+        if (dropdownSelection.value === 'Playstation 4') {
+          return 'ps4'
+        } else if (dropdownSelection.value === 'Playstation 5') {
+          return 'ps5'
+        } else {
+          return ''
+        }
       } else {
-        return ''
+        if (dropdownSelection.value === 'Horror') {
+          return 'horror'
+        } else if (dropdownSelection.value === 'Fiction') {
+          return 'fiction'
+        } else if (dropdownSelection.value === 'Fantasy') {
+          return 'fantasy'
+        } else if (dropdownSelection.value === 'Science Fiction') {
+          return 'sci-fi'
+        } else {
+          return ''
+        }
       }
     }
 
@@ -52,7 +69,7 @@ const clearFilter = (e: any) => {
 
   price.value = ''
   rating.value = ''
-  dropdownSelection.value = 'Select an option'  
+  dropdownSelection.value = 'Select an option'
   emit('filtration-data', {})
 
   e.preventDefault()
@@ -64,8 +81,8 @@ useDetectOutsideClick(dropdownRef, () => {
 
 const openCloseDropdown = (platformGenre?: string) => {
   openClose.value = !openClose.value
-  
-  if (platformGenre) {    
+
+  if (platformGenre) {
     dropdownSelection.value = platformGenre
   }
 }
@@ -95,7 +112,11 @@ const openCloseDropdown = (platformGenre?: string) => {
         >
           {{ dropdownSelection }}
         </button>
-        <ul class="dropdown-menu" :class="{ 'dropdown-open': openClose }">
+        <ul
+          v-if="categoryIndex === 0"
+          class="dropdown-menu"
+          :class="{ 'dropdown-open': openClose }"
+        >
           <li>
             <span @click="openCloseDropdown('Select an option')" class="dropdown-item"
               >--Select--</span
@@ -109,6 +130,27 @@ const openCloseDropdown = (platformGenre?: string) => {
           <li>
             <span @click="openCloseDropdown('Playstation 5')" class="dropdown-item"
               >Playstation 5</span
+            >
+          </li>
+        </ul>
+        <ul v-else class="dropdown-menu" :class="{ 'dropdown-open': openClose }">
+          <li>
+            <span @click="openCloseDropdown('Select an option')" class="dropdown-item"
+              >--Select--</span
+            >
+          </li>
+          <li>
+            <span @click="openCloseDropdown('Horror')" class="dropdown-item">Horror</span>
+          </li>
+          <li>
+            <span @click="openCloseDropdown('Fiction')" class="dropdown-item">Fiction</span>
+          </li>
+          <li>
+            <span @click="openCloseDropdown('Fantasy')" class="dropdown-item">Fantasy</span>
+          </li>
+          <li>
+            <span @click="openCloseDropdown('Science Fiction')" class="dropdown-item"
+              >Science Fiction</span
             >
           </li>
         </ul>
@@ -136,6 +178,7 @@ const openCloseDropdown = (platformGenre?: string) => {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   box-shadow: 0 0 10px #898585;
+  overflow: auto;
 
   h2 {
     text-align: center;
@@ -230,6 +273,35 @@ const openCloseDropdown = (platformGenre?: string) => {
         color: red;
         font-size: 14px;
         margin: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  .container-fluid {
+    form {
+      .dropdown {
+        .btn {
+          width: unset;
+        }
+      }
+    }
+
+    .filter-btn {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .container-fluid {
+    form {
+      .dropdown {
+        .btn {
+          width: 100%;
+        }
       }
     }
   }

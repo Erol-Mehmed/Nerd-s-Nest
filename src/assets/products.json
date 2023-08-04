@@ -188,21 +188,319 @@
   "books": [
     [
       {
-        "name": "Star Wars Jedi: Survivor (PC)",
-        "image": "../assets/images/games/star-wars-jedi-survivor.jpg",
-        "platform": "ps4",
-        "description": "The story of Cal Kestis continues in Star Wars Jedi: Survivor™, a third-person, galaxy-spanning, action-adventure game from Respawn Entertainment, developed in collaboration with Lucasfilm Games.",
-        "price": "80$",
+        "name": "It - Stephen King",
+        "image": "../assets/images/books/it.jpg",
+        "genre": "horror",
+        "description": "It is a 1986 horror novel by American author Stephen King.",
+        "price": "10$",
+        "rating": "4.5"
+      },
+      {
+        "name": "The Godfather - Mario Puzo",
+        "image": "../assets/images/books/godfather.jpg",
+        "genre": "fiction",
+        "description": "The novel details the story of a fictional Mafia family in New York City (and Long Island), headed by Vito Corleone, the Godfather.",
+        "price": "10$",
+        "discountedPrice": "6$",
         "rating": "4"
       },
       {
-        "name": "Assassins Creed: Valhalla (PS4)",
-        "image": "../assets/images/games/ac-valhalla.jpg",
-        "platform": "ps4",
-        "description": "Assassin's Creed Valhalla is an action-adventure video game developed by Ubisoft Montreal and published by Ubisoft.",
-        "price": "60$",
-        "discountedPrice": "30$",
+        "name": "The Shining - Stephen King",
+        "image": "../assets/images/books/the-shining.jpg",
+        "genre": "horror",
+        "description": "A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future.",
+        "price": "12$",
+        "rating": "3.5"
+      }
+    ],
+    [
+      {
+        "name": "The Stand - Stephen King",
+        "image": "../assets/images/books/the-stand.jpg",
+        "genre": "sci-fi",
+        "description": "A deadly plague wipes out most of the world's population. The few survivors must band together to rebuild society and face the threat of a sinister religious cult.",
+        "price": "15$",
         "rating": "4.5"
+      },
+      {
+        "name": "Misery - Stephen King",
+        "image": "../assets/images/books/misery.jpg",
+        "genre": "horror",
+        "description": "",
+        "price": "10$",
+        "rating": "3"
+      },
+      {
+        "name": "'Salem's Lot - Stephen King",
+        "image": "../assets/images/books/salems-lot.jpg",
+        "genre": "horror",
+        "description": "A small town is being terrorized by vampires. A writer returns to his hometown to investigate the strange happenings, and he soon finds himself in a fight for his life.",
+        "price": "11$",
+        "rating": "2.5"
+      }
+    ],
+    [
+      {
+        "name": "Carrie - Stephen King",
+        "image": "../assets/images/books/carrie.jpg",
+        "genre": "horror",
+        "description": "A shy teenage girl with telekinetic powers is bullied by her classmates. When she finally snaps, she unleashes her powers on the people who have wronged her.",
+        "price": "10$",
+        "rating": "4.5"
+      },
+      {
+        "name": "Doctor Sleep - Stephen King",
+        "image": "../assets/images/books/doctor-sleep.jpg",
+        "genre": "horror",
+        "description": "The sequel to The Shining, Doctor Sleep follows Danny Torrance as an adult. Danny is still struggling with the trauma of his childhood, but he learns to use his powers to help others who are suffering.",
+        "price": "13$",
+        "rating": "5"
+      },
+      {
+        "name": "The Institute - Stephen King",
+        "image": "../assets/images/books/the-institute.jpg",
+        "genre": "horror",
+        "description": "A group of children with special abilities are kidnapped and taken to a secret government facility. The children must use their powers to escape and find a way to stop the people who are holding them captive.",
+        "price": "14$",
+        "rating": "4"
+      }
+    ],
+    [
+      {
+        "name": "Dracula - Bram Stoker",
+        "image": "../assets/images/books/dracula.jpg",
+        "genre": "horror",
+        "description": "A group of children with special abilities are kidnapped and taken to a secret government facility. The children must use their powers to escape and find a way to stop the people who are holding them captive.",
+        "price": "14$",
+        "rating": "4.5"
+      },
+      {
+        "name": "The Hitchhiker's Guide to the Galaxy - Douglas Adams",
+        "image": "../assets/images/books/hitchhikers-guide.jpg",
+        "genre": "sci-fi",
+        "description": "A comedic science fiction novel following the adventures of Arthur Dent, a hapless Englishman, following the destruction of the Earth by the Vogons, a race of unpleasant and bureaucratic aliens.",
+        "price": "10$",
+        "rating": "4.5"
+      },
+      {
+        "name": "The Lord of the Rings - J.R.R Tolkien",
+        "image": "../assets/images/books/lord-of-the-rings.jpg",
+        "genre": "fantasy",
+        "description": "A classic high fantasy novel following the hobbit Frodo Baggins as he and a fellowship of companions embark on a quest to destroy the One Ring, an evil artifact created by the Dark Lord Sauron.",
+        "price": "12$",
+        "rating": "4.5"
+      }
+    ],
+    [
+      {
+        "name": "The Hunger Games - Suzzane Collins",
+        "image": "../assets/images/books/hunger-games.jpg",
+        "genre": "sci-fi",
+        "description": "A dystopian novel set in a future where children are forced to fight to the death in an annual televised event.",
+        "price": "11$",
+        "rating": "1"
+      },
+      {
+        "name": "To Kill a Mockingbird - Harper Lee",
+        "image": "../assets/images/books/to-kill-a-mockingbird.jpg",
+        "genre": "fiction",
+        "description": "A Pulitzer Prize-winning novel about a young girl who learns about racism and courage as she watches her father defend a black man accused of rape.",
+        "price": "10$",
+        "rating": "4.5"
+      },
+      {
+        "name": "The Kite Runner - Khaled Hosseini",
+        "image": "../assets/images/books/the-kite-runner.jpg",
+        "genre": "fiction",
+        "description": "A coming-of-age novel set in Afghanistan about a friendship between a wealthy boy and a poor boy that is tested by war and social change.",
+        "price": "14$",
+        "discountedPrice": "5$",
+        "rating": "4"
+      }
+    ],
+    [
+      {
+        "name": "The Book Thief - Markus Zusak",
+        "image": "../assets/images/books/the-book-thief.jpg",
+        "genre": "fiction",
+        "description": "A novel set in Nazi Germany about a young girl who steals books to escape the harsh realities of her life.",
+        "price": "12$",
+        "rating": "4.5"
+      },
+      {
+        "name": "The Curious Incident of the Dog in the Night-Time - Mark Haddon",
+        "image": "../assets/images/books/curious-incident.jpg",
+        "genre": "fantasy",
+        "description": "A mystery novel told from the perspective of a teenage boy with autism who sets out to solve the mystery of who killed his neighbor's dog.",
+        "price": "10$",
+        "rating": "3.5"
+      },
+      {
+        "name": "The Fault in Our Stars - John Green",
+        "image": "../assets/images/books/fault-in-our-stars.jpg",
+        "genre": "fiction",
+        "description": "A love story between two teenagers with cancer who meet at a cancer support group.",
+        "price": "9$",
+        "discountedPrice": "3$",
+        "rating": "4.5"
+      }
+    ],
+    [
+      {
+        "name": "Gone Girl - Gillian Flynn",
+        "image": "../assets/images/books/gone-girl.jpg",
+        "genre": "fiction",
+        "description": "A suspenseful thriller about a husband who becomes the prime suspect in his wife's disappearance.",
+        "price": "12$",
+        "rating": "4"
+      },
+      {
+        "name": "The Girl on the Train - Paula Hawkins",
+        "image": "../assets/images/books/girl-on-the-train.jpg",
+        "genre": "fiction",
+        "description": "A woman who is struggling with alcoholism and a recent divorce becomes obsessed with a seemingly perfect couple who live across the street from her.",
+        "price": "11$",
+        "discountedPrice": "3$",
+        "rating": "2"
+      },
+      {
+        "name": "The Alchemist - Paulo Cuellio",
+        "image": "../assets/images/books/the-alchemist.jpg",
+        "genre": "fiction",
+        "description": "A story about a young shepherd named Santiago who travels from Spain to Egypt in search of treasure buried near the Pyramids.",
+        "price": "5$",
+        "rating": "4.5"
+      }
+    ],
+    [
+      {
+        "name": "The Catcher in the Rye - J. D. Salinger",
+        "image": "../assets/images/books/catcher-in-the-rye.jpg",
+        "genre": "fiction",
+        "description": "A novel about a teenage boy named Holden Caulfield who is expelled from his boarding school and goes on a journey around New York City.",
+        "price": "12$",
+        "rating": "5"
+      },
+      {
+        "name": "The Bell Jar - Sylvia Plath",
+        "image": "../assets/images/books/the-bell-jar.jpg",
+        "genre": "fiction",
+        "description": "A semi-autobiographical novel about a young woman named Esther Greenwood who experiences a mental breakdown.",
+        "price": "7$",
+        "rating": "2.5"
+      },
+      {
+        "name": "Pride and Prejudice - Jane Austin",
+        "image": "../assets/images/books/pride-and-prejudice.jpg",
+        "genre": "fiction",
+        "description": "A classic novel of manners about two strong-willed people who must overcome their pride and prejudice in order to fall in love.",
+        "price": "10$",
+        "rating": "4.5"
+      }
+    ],
+    [
+      {
+        "name": "Jane Eyre - Jane Austin",
+        "image": "../assets/images/books/jane-eyre.jpg",
+        "genre": "fiction",
+        "description": "A coming-of-age novel about a young woman named Jane Eyre who is raised in an orphanage and then goes on to work as a governess for a wealthy family.",
+        "price": "12$",
+        "rating": "4"
+      },
+      {
+        "name": "Little Women - Louisa May Alcott",
+        "image": "../assets/images/books/little-women.jpg",
+        "genre": "fiction",
+        "description": "A novel about four sisters who must learn to live on their own after their father goes off to fight in the Civil War.",
+        "price": "4$",
+        "rating": "3"
+      },
+      {
+        "name": "The Great Gatsby - F.S. Fitzgerald",
+        "image": "../assets/images/books/the-great-gatsby.jpg",
+        "genre": "fiction",
+        "description": "A novel about the American Dream and the pursuit of wealth and success.",
+        "price": "10$",
+        "rating": "4.5"
+      }
+    ],
+    [
+      {
+        "name": "Beloved - Toni Morrison",
+        "image": "../assets/images/books/beloved.jpg",
+        "genre": "fiction",
+        "description": "A novel about a former slave who escapes to Ohio with her daughter and then must confront the ghosts of her past.",
+        "price": "12$",
+        "discountedPrice": "8$",
+        "rating": "4"
+      },
+      {
+        "name": "Things Fall Apart - Chinua Achebe",
+        "image": "../assets/images/books/things-fall-apart.jpg",
+        "genre": "fiction",
+        "description": "A novel about the fall of a traditional African society after it is colonized by the British.",
+        "price": "13$",
+        "rating": "4.5"
+      },
+      {
+        "name": "The God of Small Things - Arundhati Roy",
+        "image": "../assets/images/books/the-god-of-small-things.jpg",
+        "genre": "fiction",
+        "description": "A novel about three childhood friends who are caught up in the political and social upheaval of India in the 1960s.",
+        "price": "10$",
+        "rating": "4.5"
+      }
+    ],
+    [
+      {
+        "name": "The Remains of the Day - Kazuo Ishiguro",
+        "image": "../assets/images/books/the-remains-of-the-day.jpg",
+        "genre": "fiction",
+        "description": "A novel about a butler who reflects on his life and career in the years leading up to the end of World War II.",
+        "price": "15$",
+        "rating": "4.5"
+      },
+      {
+        "name": "The Road - Cormack Mccarthy",
+        "image": "../assets/images/books/the-road.jpg",
+        "genre": "sci-fi",
+        "description": "A novel about a father and son who are trying to survive in a post-apocalyptic world.",
+        "price": "9$",
+        "rating": "4.5"
+      },
+      {
+        "name": "To the Lighthouse - Virginia Wolfe",
+        "image": "../assets/images/books/to-the-lighthouse.jpg",
+        "genre": "fiction",
+        "description": "A novel about a family's summer vacation on the Isle of Skye.",
+        "price": "12$",
+        "rating": "5"
+      }
+    ],
+    [
+      {
+        "name": "1984 - George Orwell",
+        "image": "../assets/images/books/1984.jpg",
+        "genre": "sci-fi",
+        "description": "1984 is a dystopian novella by George Orwell published in 1949.",
+        "price": "8$",
+        "rating": "4.5"
+      },
+      {
+        "name": "Dune - Frank Herbert",
+        "image": "../assets/images/books/dune.jpg",
+        "genre": "sci-fi",
+        "description": "A science fiction novel about a young man who is thrust into a war for control of the galaxy.",
+        "price": "12$",
+        "rating": "5"
+      },
+      {
+        "name": "The Three-Body Problem - Cixin Liuv",
+        "image": "../assets/images/books/three-body-problem.jpg",
+        "genre": "sci-fi",
+        "description": "A science fiction novel about the first contact between humans and aliens.",
+        "price": "11$",
+        "rating": "5"
       }
     ]
   ]

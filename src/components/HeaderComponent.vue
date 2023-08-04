@@ -14,8 +14,8 @@ const switchCategoryEmit = (categoryIndex: number) => {
 </script>
 
 <template>
-  <header class="row sticky-top">
-    <nav class="navbar navbar-light col-md-1">
+  <header class="sticky-top">
+    <nav class="navbar navbar-light">
       <button
         @mouseover="hideNavbar = false"
         @mouseleave="hideNavbar = true"
@@ -26,7 +26,7 @@ const switchCategoryEmit = (categoryIndex: number) => {
       </button>
     </nav>
 
-    <div class="logo-name col-md-3">
+    <div class="logo-name">
       <img :src="logo" alt="" />
       <h1>Nerd's Nest</h1>
     </div>
@@ -53,7 +53,8 @@ const switchCategoryEmit = (categoryIndex: number) => {
 </template>
 
 <style scoped lang="scss">
-.row {
+.sticky-top {
+  display: flex;
   height: 80px;
   border-bottom: 2px solid black;
   background: var(--main-color);

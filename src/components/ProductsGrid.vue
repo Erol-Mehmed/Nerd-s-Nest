@@ -27,6 +27,17 @@ const currentProducts = (categoryIndex: number, filter?: boolean) =>
     ? productsArr[categoryIndex][1]
     : productsArr[categoryIndex][1].filter((_el: any, i: number) => i < 5)
 
+const productCounts = ref({
+  current: 0,
+  all: 0
+})
+
+for (let i = 0; i < currentProducts(categoryIndex.value).length; i += 1) {
+  for (let y = 0; y < currentProducts(categoryIndex.value)[i].length; y += 1) {
+    productCounts.value.all++
+  }
+}
+
 const openCloseDropdown = (currentMethod?: string) => {
   openClose.value = !openClose.value
 
@@ -35,13 +46,10 @@ const openCloseDropdown = (currentMethod?: string) => {
 
     // Leveling the nested arrays
 
-    sortedArray = currentProducts(categoryIndex.value, true).reduce(
-      (acc: any[], cur: any) => {
-        acc.push(...cur)
-        return acc
-      },
-      []
-    )
+    sortedArray = currentProducts(categoryIndex.value, true).reduce((acc: any[], cur: any) => {
+      acc.push(...cur)
+      return acc
+    }, [])
 
     // Give price the discounted price where available
 
@@ -117,6 +125,45 @@ const cartAlert = () => {
   alert('Product added to cart')
 }
 
+let ratingStars: string[][][] = []
+
+const ratingStarsCreation = () => {
+  const currentCategoryArr = currentProducts(categoryIndex.value)
+  const decimalCheck = /^[0-9]+\.5$/
+
+  for (let i = 0; i < currentCategoryArr.length; i += 1) {
+    const currentNestedArr: string[][] = []
+
+    for (let y = 0; y < currentCategoryArr[i].length; y += 1) {
+      let currentRating = currentCategoryArr[i][y].rating
+      const iconTypeArr = []
+
+      if (decimalCheck.test(currentRating)) {
+        for (let l = 0; l < Number(currentRating.split('.')[0]); l += 1) {
+          iconTypeArr.push('fas fa-star')
+        }
+
+        iconTypeArr.push('fa-star-half-stroke')
+      } else {
+        for (let l = 0; l < Number(currentRating); l += 1) {
+          iconTypeArr.push('fas fa-star')
+        }
+      }
+
+      if (iconTypeArr.length < 5) {
+        while (iconTypeArr.length < 5) {
+          iconTypeArr.push('far fa-star')
+        }
+      }
+
+      currentNestedArr.push(iconTypeArr)
+    }
+
+    ratingStars.push(currentNestedArr)
+  }
+}
+ratingStarsCreation()
+
 if (filterDataArr.length > 0) {
   const currentCategoryArr = currentProducts(categoryIndex.value, true)
   let productsArrSecond: any = [
@@ -164,47 +211,10 @@ if (filterDataArr.length > 0) {
 
   if (noResult.value) {
     productsArr = productsArrSecond
+    ratingStars = []
+    ratingStarsCreation()
   }
 }
-
-let ratingStars: string[][][] = []
-
-const ratingStarsCreation = () => {
-  const currentCategoryArr = currentProducts(categoryIndex.value)
-  const decimalCheck = /^[0-9]+\.5$/
-
-  for (let i = 0; i < currentCategoryArr.length; i += 1) {
-    const currentNestedArr: string[][] = []
-
-    for (let y = 0; y < currentCategoryArr[i].length; y += 1) {
-      let currentRating = currentCategoryArr[i][y].rating
-      const iconTypeArr = []
-
-      if (decimalCheck.test(currentRating)) {
-        for (let l = 0; l < Number(currentRating.split('.')[0]); l += 1) {
-          iconTypeArr.push('fas fa-star')
-        }
-
-        iconTypeArr.push('fa-star-half-stroke')
-      } else {
-        for (let l = 0; l < Number(currentRating); l += 1) {
-          iconTypeArr.push('fas fa-star')
-        }
-      }
-
-      if (iconTypeArr.length < 5) {
-        while (iconTypeArr.length < 5) {
-          iconTypeArr.push('far fa-star')
-        }
-      }
-
-      currentNestedArr.push(iconTypeArr)
-    }
-
-    ratingStars.push(currentNestedArr)
-  }
-}
-ratingStarsCreation()
 
 const loadMore = () => {
   showMore.value = true
@@ -216,10 +226,6 @@ const loadMore = () => {
 <template>
   <div class="container-fluid col-md-10">
     <div class="row category-name-sort">
-      <!-- <div class="counter">
-        <p>{{  }} out of {{  }}</p>
-      </div> -->
-
       <div class="category col-md-7">
         <h5>{{ categoryIndex === 0 ? 'Games' : 'Books' }}</h5>
         <p v-if="categoryIndex === 0">Search and buy the hit games of Sony</p>
@@ -261,6 +267,10 @@ const loadMore = () => {
           </li>
         </ul>
       </div>
+
+      <!-- <div class="counter col-md-9">
+        <p>{{  }} out of {{  }}</p>
+      </div> -->
     </div>
 
     <div v-if="noResult">
@@ -297,6 +307,7 @@ const loadMore = () => {
           </div>
         </div>
       </div>
+
       <div class="btn-holder">
         <button
           v-if="!showMore && productsArr[categoryIndex][1].length > 5"
@@ -319,6 +330,7 @@ const loadMore = () => {
   .row .category-name-sort {
     align-items: center;
     gap: 0;
+    margin-bottom: 20px !important;
 
     .category {
       text-align: center;
@@ -328,7 +340,7 @@ const loadMore = () => {
       }
 
       p {
-        font-size: 14px;
+        font-size: 12px;
         margin: 0;
       }
     }
@@ -377,6 +389,12 @@ const loadMore = () => {
             }
           }
         }
+      }
+    }
+
+    .counter {
+      p {
+        margin: 0;
       }
     }
   }
@@ -484,6 +502,20 @@ const loadMore = () => {
     h2 {
       font-size: 32px;
       font-weight: 600;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .container-fluid {
+    .row .category-name-sort {
+      align-items: center;
+      gap: 0;
+      margin-bottom: 20px !important;
+
+      .category {
+        margin-top: 20px;
+      }
     }
   }
 }
