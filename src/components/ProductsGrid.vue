@@ -1,130 +1,59 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import products from '../assets/products.json'
 import { useCategoryStore } from '@/stores/categories'
 import useDetectOutsideClick from '@/composables/clickOutside'
+import { nextTick } from 'vue'
 
 const showMore = ref(false)
+const productRowCounts = reactive({
+  displayedRows: 0,
+  displayedProducts: 0,
+  allProducts: 0
+})
 const props = defineProps(['filterData'])
 const noResult = ref(true)
 let filterDataArr = Object.values(props.filterData)
 let productsArr: any[] = Object.entries(products)
 const { categoryIndex } = storeToRefs(useCategoryStore())
-
 const dropdownRef = ref(null)
 const openClose = ref(false)
 const sortingMethod = ref('Sort')
 let sortedArray: any[] = []
 const completeOriginalArray = productsArr[categoryIndex.value][1]
+const displayedProductsPlusFive = ref(5)
+
+const getCurrentDisplayedProducts = () => {
+  productRowCounts.displayedProducts = document.getElementsByClassName('product').length
+  productRowCounts.displayedRows = document.getElementsByClassName('product-row').length
+}
+
+onMounted(() => {
+  getCurrentDisplayedProducts()
+  productRowCounts.allProducts = getAllProductsCount(productsArr[categoryIndex.value][1])
+})
+
+// Function to get products to display
+const currentProducts = (categoryIndex: number, filter?: boolean) => {
+  if (filter) {
+    return productsArr[categoryIndex][1]
+  } else {
+    return productsArr[categoryIndex][1].filter(
+      (_el: any, i: number) => i < displayedProductsPlusFive.value
+    )
+  }
+}
 
 useDetectOutsideClick(dropdownRef, () => {
   openClose.value = false
 })
 
-const currentProducts = (categoryIndex: number, filter?: boolean) =>
-  showMore.value || filter
-    ? productsArr[categoryIndex][1]
-    : productsArr[categoryIndex][1].filter((_el: any, i: number) => i < 5)
-
-const productCounts = ref({
-  current: 0,
-  all: 0
-})
-
-for (let i = 0; i < currentProducts(categoryIndex.value).length; i += 1) {
-  for (let y = 0; y < currentProducts(categoryIndex.value)[i].length; y += 1) {
-    productCounts.value.all++
-  }
+const getAllProductsCount = (currentArr: Array<Array<{ [key: string]: any }>>) => {
+  return currentArr.reduce((acc: number, el: object[]) => acc + el.length, 0)
 }
 
-const openCloseDropdown = (currentMethod?: string) => {
-  openClose.value = !openClose.value
-
-  if (currentMethod) {
-    sortingMethod.value = currentMethod
-
-    // Leveling the nested arrays
-
-    sortedArray = currentProducts(categoryIndex.value, true).reduce((acc: any[], cur: any) => {
-      acc.push(...cur)
-      return acc
-    }, [])
-
-    // Give price the discounted price where available
-
-    let secondSortedArray = sortedArray.slice()
-    const discountedItemsArr: any = {}
-
-    for (let i = 0; i < secondSortedArray.length; i += 1) {
-      if (secondSortedArray[i].discountedPrice) {
-        discountedItemsArr[secondSortedArray[i].name] = secondSortedArray[i].price
-        secondSortedArray[i].price = secondSortedArray[i].discountedPrice
-      }
-    }
-
-    // Sorting according to dropdown choice
-
-    if (currentMethod === 'Sort') {
-      productsArr[categoryIndex.value][1] = completeOriginalArray
-      return
-    } else if (currentMethod === 'Alphabetical a-z') {
-      sortedArray = sortedArray.sort((a, b) =>
-        a.name.toLowerCase().localeCompare(b.name.toLowerCase())
-      )
-    } else if (currentMethod === 'Alphabetical z-a') {
-      sortedArray = sortedArray.sort((a, b) =>
-        b.name.toLowerCase().localeCompare(a.name.toLowerCase())
-      )
-    } else if (currentMethod === 'Price ascending') {
-      secondSortedArray = secondSortedArray.sort(
-        (a, b) => a.price.split('$')[0] - b.price.split('$')[0]
-      )
-    } else if (currentMethod === 'Price descending') {
-      secondSortedArray = secondSortedArray.sort(
-        (a, b) => b.price.split('$')[0] - a.price.split('$')[0]
-      )
-    }
-
-    if (['Price ascending', 'Price descending'].includes(currentMethod)) {
-      for (let i = 0; i < secondSortedArray.length; i += 1) {
-        if (discountedItemsArr[secondSortedArray[i].name]) {
-          secondSortedArray[i].price = discountedItemsArr[secondSortedArray[i].name]
-        }
-      }
-
-      sortedArray = secondSortedArray.slice()
-    }
-
-    // Preparing the array for productArr
-
-    const sortedValuesRowsArr: any[] = []
-    let counter = 0
-    let nestedArr = []
-
-    for (let i = 0; i < sortedArray.length; i += 1) {
-      counter++
-
-      if (counter < 4) {
-        nestedArr.push(sortedArray[i])
-      }
-
-      if (counter === 3 || i === sortedArray.length - 1) {
-        sortedValuesRowsArr.push(nestedArr)
-        nestedArr = []
-        counter = 0
-      }
-    }
-
-    productsArr[categoryIndex.value][1] = sortedValuesRowsArr
-  }
-}
-
-const currentProductImage = (imgPath: string) => new URL(imgPath, import.meta.url).href
-const cartAlert = () => {
-  alert('Product added to cart')
-}
-
+// Creating rating stars
 let ratingStars: string[][][] = []
 
 const ratingStarsCreation = () => {
@@ -164,6 +93,93 @@ const ratingStarsCreation = () => {
 }
 ratingStarsCreation()
 
+const openCloseDropdown = (currentMethod?: string) => {
+  openClose.value = !openClose.value
+
+  // Sorting mechanism
+  if (currentMethod) {
+    sortingMethod.value = currentMethod
+
+    // Leveling the nested arrays
+    sortedArray = currentProducts(categoryIndex.value, true).reduce((acc: any[], cur: any) => {
+      acc.push(...cur)
+      return acc
+    }, [])
+
+    // Give price the discounted price where available
+    let secondSortedArray = sortedArray.slice()
+    const discountedItemsArr: any = {}
+
+    for (let i = 0; i < secondSortedArray.length; i += 1) {
+      if (secondSortedArray[i].discountedPrice) {
+        discountedItemsArr[secondSortedArray[i].name] = secondSortedArray[i].price
+        secondSortedArray[i].price = secondSortedArray[i].discountedPrice
+      }
+    }
+
+    // Sorting according to dropdown choice
+    if (currentMethod === 'Sort') {
+      productsArr[categoryIndex.value][1] = completeOriginalArray
+      return
+    } else if (currentMethod === 'Alphabetical a-z') {
+      sortedArray = sortedArray.sort((a, b) =>
+        a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+      )
+    } else if (currentMethod === 'Alphabetical z-a') {
+      sortedArray = sortedArray.sort((a, b) =>
+        b.name.toLowerCase().localeCompare(a.name.toLowerCase())
+      )
+    } else if (currentMethod === 'Price ascending') {
+      secondSortedArray = secondSortedArray.sort(
+        (a, b) => a.price.split('$')[0] - b.price.split('$')[0]
+      )
+    } else if (currentMethod === 'Price descending') {
+      secondSortedArray = secondSortedArray.sort(
+        (a, b) => b.price.split('$')[0] - a.price.split('$')[0]
+      )
+    }
+
+    if (['Price ascending', 'Price descending'].includes(currentMethod)) {
+      for (let i = 0; i < secondSortedArray.length; i += 1) {
+        if (discountedItemsArr[secondSortedArray[i].name]) {
+          secondSortedArray[i].price = discountedItemsArr[secondSortedArray[i].name]
+        }
+      }
+
+      sortedArray = secondSortedArray.slice()
+    }
+
+    // Preparing the array for productArr
+    const sortedValuesRowsArr: any[] = []
+    let counter = 0
+    let nestedArr = []
+
+    for (let i = 0; i < sortedArray.length; i += 1) {
+      counter++
+
+      if (counter < 4) {
+        nestedArr.push(sortedArray[i])
+      }
+
+      if (counter === 3 || i === sortedArray.length - 1) {
+        sortedValuesRowsArr.push(nestedArr)
+        nestedArr = []
+        counter = 0
+      }
+    }
+
+    productsArr[categoryIndex.value][1] = sortedValuesRowsArr
+    ratingStars = []
+    ratingStarsCreation()
+  }
+}
+
+const currentProductImage = (imgPath: string) => new URL(imgPath, import.meta.url).href
+const cartAlert = () => {
+  alert('Product added to cart')
+}
+
+// Filtering mechanism
 if (filterDataArr.length > 0) {
   const currentCategoryArr = currentProducts(categoryIndex.value, true)
   let productsArrSecond: any = [
@@ -216,10 +232,20 @@ if (filterDataArr.length > 0) {
   }
 }
 
+// Load more products function
 const loadMore = () => {
-  showMore.value = true
-  ratingStars = []
-  ratingStarsCreation()
+  nextTick(() => {
+    getCurrentDisplayedProducts()
+    displayedProductsPlusFive.value = productRowCounts.displayedRows + 5
+    console.log(document.getElementsByClassName('product').length, productRowCounts.allProducts)
+
+    if (productRowCounts.allProducts === productRowCounts.displayedProducts) {
+      showMore.value = true
+    }
+
+    ratingStars = []
+    ratingStarsCreation()
+  })
 }
 </script>
 
@@ -268,13 +294,20 @@ const loadMore = () => {
         </ul>
       </div>
 
-      <!-- <div class="counter col-md-9">
-        <p>{{  }} out of {{  }}</p>
-      </div> -->
+      <div class="counter col-md-10">
+        <p>
+          Products <span>{{ productRowCounts.displayedProducts }}</span> out of
+          <span>{{ productRowCounts.allProducts }}</span>
+        </p>
+      </div>
     </div>
 
     <div v-if="noResult">
-      <div v-for="(rowArr, i) in currentProducts(categoryIndex)" :key="rowArr[0].name" class="row">
+      <div
+        v-for="(rowArr, i) in currentProducts(categoryIndex)"
+        :key="rowArr[0].name"
+        class="row product-row"
+      >
         <div v-for="(product, y) in rowArr" :key="product.name" class="col-md-3 product">
           <div class="img-name">
             <img :src="currentProductImage(product.image)" alt="" />
@@ -285,7 +318,7 @@ const loadMore = () => {
             <p :class="{ 'discount-available': product.discountedPrice }">
               Price: {{ product.price }}
             </p>
-            <p v-if="product.discountedPrice">Discounted Price {{ product.discountedPrice }}</p>
+            <p v-if="product.discountedPrice">Discounted Price: {{ product.discountedPrice }}</p>
           </div>
           <div class="ratings">
             <div class="rating-icons">
@@ -394,7 +427,13 @@ const loadMore = () => {
 
     .counter {
       p {
-        margin: 0;
+        font-size: 14px;
+        padding-left: 11px;
+        margin: 12px 0 0;
+
+        span {
+          font-weight: 600;
+        }
       }
     }
   }

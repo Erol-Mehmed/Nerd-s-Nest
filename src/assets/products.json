@@ -183,6 +183,25 @@
         "price": "80$",
         "rating": "4.5"
       }
+    ],
+    [
+      {
+        "name": "Demon's Souls Remake (PS5)",
+        "image": "../assets/images/games/demon-souls.png",
+        "platform": "ps5",
+        "description": "From PlayStation Studios and Bluepoint Games comes a remake of the PlayStation classic, Demon's Souls",
+        "price": "80$",
+        "rating": "4.5"
+      },
+      {
+        "name": "God of War Ragnarok (PS5)",
+        "image": "../assets/images/games/god-of-war-ragnarok.jpg",
+        "platform": "ps5",
+        "description": "The sequel to the 2018 Sony Santa Monica title, God of War Ragnarok is the next chapter in the story of Kratos and his growing son Atreus.",
+        "price": "80$",
+        "discountedPrice": "50$",
+        "rating": "4"
+      }
     ]
   ],
   "books": [
@@ -500,6 +519,16 @@
         "genre": "sci-fi",
         "description": "A science fiction novel about the first contact between humans and aliens.",
         "price": "11$",
+        "rating": "5"
+      }
+    ],
+    [
+      {
+        "name": "Anna Karenina - Leo Tolstoy",
+        "image": "../assets/images/books/anna-karenina.jpg",
+        "genre": "fiction",
+        "description": "Anna Karenina, novel by Leo Tolstoy, published in installments between 1875 and 1877 and considered one of the pinnacles of world literature.",
+        "price": "20$",
         "rating": "5"
       }
     ]
