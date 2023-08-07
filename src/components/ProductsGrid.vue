@@ -13,7 +13,7 @@ const productRowCounts = reactive({
   allProducts: 0
 })
 const props = defineProps(['filterData'])
-const noResult = ref(true)
+let noResult = true
 let filterDataArr = Object.values(props.filterData)
 let productsArr: any[] = Object.entries(products)
 const { categoryIndex } = storeToRefs(useCategoryStore())
@@ -29,14 +29,19 @@ const getCurrentDisplayedProducts = () => {
   productRowCounts.displayedRows = document.getElementsByClassName('product-row').length
 }
 
+const getAllProductsCount = (currentArr: Array<Array<{ [key: string]: any }>>) => {
+  return currentArr.reduce((acc: number, el: object[]) => acc + el.length, 0)
+}
+
 onMounted(() => {
   getCurrentDisplayedProducts()
-  productRowCounts.allProducts = getAllProductsCount(productsArr[categoryIndex.value][1])
 })
 
+productRowCounts.allProducts = getAllProductsCount(productsArr[categoryIndex.value][1])
+
 // Function to get products to display
-const currentProducts = (categoryIndex: number, filter?: boolean) => {
-  if (filter) {
+const currentProducts = (categoryIndex: number, allValues?: boolean) => {
+  if (allValues) {
     return productsArr[categoryIndex][1]
   } else {
     return productsArr[categoryIndex][1].filter(
@@ -48,10 +53,6 @@ const currentProducts = (categoryIndex: number, filter?: boolean) => {
 useDetectOutsideClick(dropdownRef, () => {
   openClose.value = false
 })
-
-const getAllProductsCount = (currentArr: Array<Array<{ [key: string]: any }>>) => {
-  return currentArr.reduce((acc: number, el: object[]) => acc + el.length, 0)
-}
 
 // Creating rating stars
 let ratingStars: string[][][] = []
@@ -120,6 +121,9 @@ const openCloseDropdown = (currentMethod?: string) => {
     // Sorting according to dropdown choice
     if (currentMethod === 'Sort') {
       productsArr[categoryIndex.value][1] = completeOriginalArray
+      ratingStars = []
+      ratingStarsCreation()
+
       return
     } else if (currentMethod === 'Alphabetical a-z') {
       sortedArray = sortedArray.sort((a, b) =>
@@ -181,13 +185,13 @@ const cartAlert = () => {
 
 // Filtering mechanism
 if (filterDataArr.length > 0) {
-  const currentCategoryArr = currentProducts(categoryIndex.value, true)
+  const currentCategoryArr = productsArr[categoryIndex.value][1]
   let productsArrSecond: any = [
     ['', []],
     ['', []]
   ]
   let rowArr = []
-  noResult.value = false
+  noResult = false
 
   for (let i = 0; i < currentCategoryArr.length; i += 1) {
     for (let y = 0; y < currentCategoryArr[i].length; y += 1) {
@@ -209,24 +213,34 @@ if (filterDataArr.length > 0) {
         if (checksPassed && l === filterDataArr.length - 1) {
           rowArr.push(currentCategoryArr[i][y])
         }
-      }
-    }
 
-    if (rowArr.length === 3 || i === currentCategoryArr.length - 1) {
-      if (rowArr.length > 0) {
-        productsArrSecond[categoryIndex.value][1].push(rowArr)
-      }
+        if (rowArr.length === 3 || i === currentCategoryArr.length - 1) {
+          if (
+            rowArr !==
+            productsArrSecond[categoryIndex.value][1][
+              productsArrSecond[categoryIndex.value][1].length - 1
+            ]
+          ) {
+            if (rowArr.length > 0) {
+              productsArrSecond[categoryIndex.value][1].push(rowArr)
+            }
 
-      if (rowArr.length > 0) {
-        noResult.value = true
-      }
+            if (rowArr.length > 0) {
+              noResult = true
+            }
 
-      rowArr = []
+            if (rowArr.length === 3) {
+              rowArr = []
+            }
+          }
+        }
+      }
     }
   }
 
-  if (noResult.value) {
-    productsArr = productsArrSecond
+  if (noResult) {
+    productsArr[categoryIndex.value][1] = productsArrSecond[categoryIndex.value][1]
+
     ratingStars = []
     ratingStarsCreation()
   }
@@ -234,18 +248,25 @@ if (filterDataArr.length > 0) {
 
 // Load more products function
 const loadMore = () => {
+  displayedProductsPlusFive.value = productRowCounts.displayedRows + 5
+
   nextTick(() => {
     getCurrentDisplayedProducts()
-    displayedProductsPlusFive.value = productRowCounts.displayedRows + 5
-    console.log(document.getElementsByClassName('product').length, productRowCounts.allProducts)
 
-    if (productRowCounts.allProducts === productRowCounts.displayedProducts) {
+    if (
+      productRowCounts.allProducts === productRowCounts.displayedProducts ||
+      productRowCounts.displayedProducts ===
+        productsArr[categoryIndex.value][1].reduce((acc: any[], cur: any) => {
+          acc.push(...cur)
+          return acc
+        }, []).length
+    ) {
       showMore.value = true
     }
-
-    ratingStars = []
-    ratingStarsCreation()
   })
+
+  ratingStars = []
+  ratingStarsCreation()
 }
 </script>
 
