@@ -16,7 +16,9 @@ const switchCategoryEmit = (categoryIndex: number) => {
     <div class="second-group">
       <router-link class="links" to="/messages">Messages</router-link>
       <router-link class="links" to="/my">Your Account</router-link>
-      <router-link class="links" to="/messages">Add ad</router-link>
+      <div class="add-ad">
+        <router-link class="links" to="/messages">Add ad</router-link>
+      </div>
     </div>
   </header>
 </template>
@@ -36,21 +38,43 @@ const switchCategoryEmit = (categoryIndex: number) => {
     text-decoration: none;
     color: var(--vt-c-white);
     background: none;
+
+    &:hover {
+      color: #7f9799;
+    }
   }
 
   .name {
     font-size: 22px;
-
-    &:hover {
-      color: rgb(228, 255, 255);
-    }
   }
   .second-group {
     .links {
       font-size: 16px;
-      
-      &:nth-of-type(-n+2) {
-        margin-right: 10px;
+      font-weight: 600;
+      margin-right: 30px;
+    }
+
+    .add-ad {
+      display: inline-flex;
+      width: 140px;
+      height: 45px;
+      border-radius: 5px;
+      background: var(--vt-c-white);
+      padding: 5px 4px;
+
+      .links {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        color: var(--main-color);
+        margin: 0;
+
+        &:hover {
+          color: var(--vt-c-white);
+          background: var(--main-color);
+        }
       }
     }
   }
