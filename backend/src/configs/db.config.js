@@ -6,10 +6,4 @@ const connection = mysql.createConnection({
   password: '123456',
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.log('Database connection failed!', err);
-  } else {
-    console.log('Connected to Database.');
-  }
-});
+module.exports = connection;
