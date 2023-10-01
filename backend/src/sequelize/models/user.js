@@ -1,22 +1,6 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize({
-  dialect: 'mysql',
-  host: 'localhost',
-  port: 3306,
-  username: 'root',
-  password: '123456',
-  database: 'nerds-nest'
-});
-
-sequelize.authenticate()
-  .then(() => {
-    console.log('Database connected.');
-  })
-  .catch(err => {
-    console.log('Unable to connect to database', err);
-  });
-
-  const User = sequelize.define('User', {
+import { retrieveSequalize } from "../../../utils/preload_utils.js";
+const sequalize = retrieveSequalize()
+  const User = sequalize.define('User', {
     name: {
       type: DataTypes.STRING
     },
@@ -34,4 +18,4 @@ sequelize.authenticate()
     }
   });
 
-  User.sync();
+  // User.sync();
