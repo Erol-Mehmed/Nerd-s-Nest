@@ -15,7 +15,7 @@ export function connectToDatabase(sequalizeObject) {
     .catch(err => {
       console.log('Unable to connect to database', err);
     });
-}
+};
 
 function curryRetrieve() {
   /*
@@ -23,7 +23,7 @@ function curryRetrieve() {
   Only one instance can exist. If this instance already exists, reuse and
   access it by storing it outside of the wrapper.
   */
-  let sequalize = "None"
+  let sequalize = "None";
 
   function wrapperRetrieve() {
     if (sequalize === "None") {
@@ -37,11 +37,11 @@ function curryRetrieve() {
         database: settings.database.databaseName
       });
 
-      return sequalize
+      return sequalize;
     }
-    return sequalize
+    return sequalize;
   }
-  return wrapperRetrieve
-}
+  return wrapperRetrieve;
+};
 
-export const retrieveSequalize = curryRetrieve()
+export const retrieveSequalize = curryRetrieve();
