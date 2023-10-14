@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import FilterComponent from './FilterComponent.vue'
 import ProductsGrid from './ProductsGrid.vue'
-import axios from 'axios';
+import axios from 'axios'
 
 const updater = ref(0)
 const filterData = ref({})
@@ -12,7 +12,7 @@ const filtrationData = (data: object) => {
 }
 
 onMounted(() => {
-  axios.get('/')
+  axios.get('http://localhost:3000/')
   .then(response => {
     console.log('res:', response)
   })

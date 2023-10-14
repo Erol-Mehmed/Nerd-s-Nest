@@ -3,10 +3,10 @@ import User from '../sequelize/models/user';
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', async () => {
   const users = await User.findAll();
   console.log(users);
 });
 
-console.log('home router');
+console.log('home.js:', User);
 export default router;

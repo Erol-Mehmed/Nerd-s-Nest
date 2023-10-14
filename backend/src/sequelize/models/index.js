@@ -1,19 +1,24 @@
 'use strict';
 
+import config from '../config/config.json' assert { type: 'json' };
 import { readdirSync } from 'fs';
 import { basename as _basename, join } from 'path';
 import Sequelize, { DataTypes } from 'sequelize';
 import { env as _env } from 'process';
+import { URL } from 'url';
+
+const __filename = new URL('', import.meta.url).pathname;
+const __dirname = new URL('.', import.meta.url).pathname;
 const basename = _basename(__filename);
 const env = _env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const developmentConfig = config[env];
 const db = {};
 
 let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(_env[config.use_env_variable], config);
+if (developmentConfig.use_env_variable) {
+  sequelize = new Sequelize(_env[developmentConfig.use_env_variable], developmentConfig);
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+  sequelize = new Sequelize(developmentConfig.database, developmentConfig.username, developmentConfig.password, developmentConfig);
 }
 
 readdirSync(__dirname)

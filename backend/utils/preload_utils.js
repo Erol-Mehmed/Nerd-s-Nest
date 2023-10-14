@@ -1,7 +1,6 @@
 import { Sequelize } from 'sequelize';
 import { settings } from "../settings.js";
 
-
 export function connectToDatabase(sequalizeObject) {
   /*
   Establish a Database connection.
