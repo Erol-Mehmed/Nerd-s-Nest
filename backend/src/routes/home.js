@@ -1,6 +1,5 @@
 import express from 'express';
-import User from '../sequelize/models/user';
-
+import User from '../sequelize/models/user.js';
 const router = express.Router();
 
 router.get('/', async () => {
