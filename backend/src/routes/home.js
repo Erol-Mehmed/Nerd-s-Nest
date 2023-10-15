@@ -1,11 +1,11 @@
 import express from 'express';
-import User from '../sequelize/models/user.js';
+import db  from '../sequelize/models/index.js';
 const router = express.Router();
 
 router.get('/', async () => {
-  const users = await User.findAll();
+  const users = await db.User.findAll();
   console.log(users);
 });
 
-console.log('home.js:', User);
+console.log('home.js:', db.User);
 export default router;
